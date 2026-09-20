@@ -1,0 +1,24 @@
+import { ArrowRight, Heart, Leaf, MessageCircle } from 'lucide-react';
+import { Link } from 'wouter';
+import { useEffect } from 'react';
+
+export default function About() {
+  useEffect(() => {
+    const title = 'About Naturals Salon & Spa Hyderabad';
+    const description = 'Discover the considered, personal salon experience at Naturals Salon & Spa in Hyderabad, Telangana, India.';
+    document.title = title;
+    for (const [key, value] of [['name', description], ['property', description]] as const) {
+      const selector = key === 'name' ? 'meta[name="description"]' : 'meta[property="og:description"]';
+      const meta = document.querySelector(selector) ?? document.createElement('meta');
+      meta.setAttribute(key, value); meta.setAttribute('content', description); document.head.appendChild(meta);
+    }
+    const ogTitle = document.querySelector('meta[property="og:title"]') ?? document.createElement('meta');
+    ogTitle.setAttribute('property', 'og:title'); ogTitle.setAttribute('content', title); document.head.appendChild(ogTitle);
+  }, []);
+  return <main>
+    <section className="bg-secondary/60 py-20 md:py-28"><div className="section-shell grid gap-12 md:grid-cols-[1fr_.8fr] md:items-end"><div><p className="eyebrow animate-rise">Our story</p><h1 className="font-display animate-rise animate-rise-delay-1 mt-5 max-w-2xl text-5xl leading-[1.04] text-primary md:text-7xl">A salon should feel like a place you can <em>settle into.</em></h1></div><p className="animate-rise animate-rise-delay-2 max-w-sm text-base leading-8 text-muted-foreground">At Naturals Salon &amp; Spa Hyderabad, every service is an invitation to slow down, feel heard, and leave with a little more confidence.</p></div></section>
+    <section className="section-shell grid gap-12 py-20 md:grid-cols-[.8fr_1.2fr] md:py-28"><div className="overflow-hidden rounded-[20px_140px_20px_20px]"><img src="/bridal-detail.jpg" alt="Elegant bridal hair detail with jasmine flowers" className="aspect-[4/5] size-full object-cover" /></div><div className="self-center md:pl-10"><p className="eyebrow">The way we work</p><h2 className="font-display mt-4 text-4xl leading-tight text-primary md:text-6xl">Personal, never prescriptive.</h2><p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground">We are here for the full range of beauty moments: the regular trim, the quiet skincare reset, the grooming refresh before a big day, and the bridal details you have been imagining.</p><p className="mt-5 max-w-lg text-base leading-8 text-muted-foreground">Our role is to understand your style and make the experience feel easy. That means thoughtful conversation, clear recommendations, and care that continues beyond the mirror.</p><Link href="/contact" data-testid="link-about-contact" className="mt-8 inline-flex items-center gap-2 border-b border-primary pb-2 text-sm font-bold text-primary hover:border-accent hover:text-accent">Start your visit <ArrowRight size={15} /></Link></div></section>
+    <section className="bg-primary py-20 text-primary-foreground md:py-24"><div className="section-shell"><p className="eyebrow !text-accent">What matters here</p><div className="mt-10 grid gap-8 md:grid-cols-3">{[['Listen first', 'A good consultation is the beginning of a good result.', MessageCircle], ['Make room', 'A calm, welcoming space changes how you feel in your own skin.', Leaf], ['Leave lighter', 'The best beauty service gives you something back: time, ease, confidence.', Heart]].map(([title, copy, Icon]) => <article key={title as string} className="border-t border-primary-foreground/20 pt-5"><Icon className="text-accent" size={24} /><h3 className="mt-8 font-display text-3xl">{title as string}</h3><p className="mt-3 max-w-xs text-sm leading-7 text-primary-foreground/65">{copy as string}</p></article>)}</div></div></section>
+    <section className="section-shell py-20 md:py-28"><div className="mx-auto max-w-3xl text-center"><p className="eyebrow">For Hyderabad</p><h2 className="font-display mt-4 text-4xl text-primary md:text-6xl">A local beauty ritual, with a wider point of view.</h2><p className="mx-auto mt-6 max-w-xl text-base leading-8 text-muted-foreground">From our home in Hyderabad, Telangana, India, we bring together the familiar ease of a neighbourhood salon with the considered feeling of a proper reset.</p><Link href="/services" data-testid="link-about-services" className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-4 text-xs font-bold uppercase tracking-widest text-accent-foreground hover:-translate-y-0.5">Explore services <ArrowRight size={15} /></Link></div></section>
+  </main>;
+}

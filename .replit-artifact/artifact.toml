@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Naturals Salon & Spa Hyderabad"
+description = "A polished responsive salon website for Naturals Salon & Spa in Hyderabad, showcasing hair, beauty, skincare, bridal, and grooming services with appointment booking."
+version = "1.0.0"
+id = "artifacts/naturals-salon-hyderabad"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23827
+
+[services.development]
+run = "pnpm --filter @workspace/naturals-salon-hyderabad run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/naturals-salon-hyderabad", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/naturals-salon-hyderabad/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23827"
+BASE_PATH = "/"
