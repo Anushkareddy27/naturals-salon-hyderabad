@@ -2,6 +2,11 @@
 
 A modern, responsive salon and spa website designed for Naturals Salon & Spa, Hyderabad.
 
+## 🌐 Live Website
+
+[Visit Naturals Salon & Spa Hyderabad](https://naturals-salon-hyderabad.vercel.app)
+
+
 ## Features
 
 - Responsive design for desktop and mobile
